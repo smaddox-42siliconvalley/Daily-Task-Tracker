@@ -229,6 +229,8 @@ class newEntry(tk.Frame):
             if (len(self.notes) > 500):
                 raise Exception("longnote")
             self.priority = int(self.priority_entry.get())
+            if self.priority < 1 or self.priority > 3:
+                raise Exception("bad value")
             task = newtask(self.title_entry.get(), self.priority_entry.get(), self.notes_entry.get())
             self.controller.add_task(task)
             self.title_entry.delete(0, 'end')
