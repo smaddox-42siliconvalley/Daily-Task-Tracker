@@ -191,6 +191,7 @@ class viewEntries(tk.Frame):
         else:
             self.title.set("Title: none")
             self.priority.set("Priority: none")
+            self.status_label.config(fg="black")
             self.status.set("Status: none")
             self.notes.set("Notes: none")
         
