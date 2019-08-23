@@ -27,3 +27,5 @@ The priority value must be 1, 2, or 3
 Click *Generate Report* under the file menu
 
 Reports will appear in the reports folder inside your repository 
+
+![alt text](https://github.com/M3n3laus/Daily-Task-Tracker/blob/master/img/Report%20Sample.png)
