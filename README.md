@@ -35,6 +35,18 @@ then use HomeBrew to install python 3
 brew install python3
 ```
 
+clone this repository
+
+```
+git clone https://github.com/M3n3laus/Daily-Task-Tracker.git Daily-Task-Tracker
+```
+
+Run the program with the following
+
+```
+python3 Daily-Task-Tracker/taskTrackerApp.pyw
+```
+
 **Using the program:**
 
 **Add a new task:**
