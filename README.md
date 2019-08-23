@@ -35,6 +35,7 @@ then use HomeBrew to install python 3
 brew install python3
 ```
 
+**Using the program:**
 
 **Add a new task:**
 
