@@ -44,3 +44,7 @@ For reports:
 On track is the completion of all level 1 tasks
 
 Main tasks accomplished is the completion of all level 1 and 2 tasks
+
+**Help Menu**
+
+The *Get Help* button will open this page in your browser
