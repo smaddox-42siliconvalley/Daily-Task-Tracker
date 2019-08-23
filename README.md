@@ -17,10 +17,13 @@ This will bring the task entry page
 
 
 A task's title and note contain contain more than 50 characters
+
 Notes are optional
+
 The priority value must be 1, 2, or 3
 
 **Generate a report**
 
 Click *Generate Report* under the file menu
+
 Reports will apppear in the reports folder inside your repository 
