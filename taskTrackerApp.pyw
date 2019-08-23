@@ -17,7 +17,6 @@ class app(tk.Tk):
         except:
             self.tasks = []
         self.f.close()
-        self.f = open('config/tasks.txt', 'wb')
         self.num_tasks = len(self.tasks)
         self.index = 0
         tk.Tk.__init__(self)
@@ -52,6 +51,7 @@ class app(tk.Tk):
             pass
 
     def getmeouttahere(self):
+        self.f = open('config/tasks.txt', 'wb')
         pickle.dump(self.tasks, self.f)
         self.f.close()
         self.destroy()
@@ -85,7 +85,7 @@ class app(tk.Tk):
             reportfile.write('Main tasks accomplished: True\n')
         else:
             reportfile.write('Main tasks accomplished: False\n')
-            
+        reportfile.close()   
         messagebox.showinfo("Report Generator", "Report Successfully generated")
         
 class amenu(tk.Menu):
