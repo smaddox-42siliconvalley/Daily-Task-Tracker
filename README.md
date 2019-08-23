@@ -12,6 +12,12 @@ Windows:
 
 Download python 3 [here](https://www.python.org/downloads)
 
+Download ZIP file
+
+Extract contents into a new folder
+
+double click taskTrackerApp.pyw
+
 MacOs:
 
 Install HomeBrew
@@ -44,7 +50,8 @@ git clone https://github.com/M3n3laus/Daily-Task-Tracker.git Daily-Task-Tracker
 Run the program with the following
 
 ```
-python3 Daily-Task-Tracker/taskTrackerApp.pyw
+cd Daily-Task-Tracker
+python3 taskTrackerApp.pyw
 ```
 
 **Using the program:**
