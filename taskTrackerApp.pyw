@@ -1,3 +1,18 @@
+#####################################################################
+#                                                                   #
+#                                                                   #
+#                                                                   #
+#                   created by: smaddox                             #
+#                                                                   #
+#                   Purpose:                                        #
+#                   This is file contains all of the code           #
+#                   in this project. It creates and maintains       #
+#                   a gui interface for tracking your everday       #
+#                   tasks                                           #
+#                                                                   #  
+#####################################################################
+
+
 import datetime
 import webbrowser
 import platform
