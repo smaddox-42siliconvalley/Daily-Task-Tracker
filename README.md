@@ -29,3 +29,18 @@ Click *Generate Report* under the file menu
 Reports will appear in the reports folder inside your repository 
 
 ![alt text](https://github.com/M3n3laus/Daily-Task-Tracker/blob/master/img/Report%20Sample.png)
+
+
+**Priority Rating System**
+
+Priority Level 1: Tasks that must be finished by the end of the day
+
+Priority Level 2: Tasks that must be completed as long as they do not interfere with level 1 tasks
+
+Priority Leve 3: Don't feel bad about not completing these tasks
+
+For reports:
+
+On track is the completion of all level 1 tasks
+
+Main tasks accomplished is the completion of all level 1 and 2 tasks
