@@ -1,4 +1,6 @@
 import datetime
+import webbrowser
+import platform
 import os
 import shutil
 import sys
@@ -25,7 +27,7 @@ class app(tk.Tk):
         container.pack()
         self.frames = {}
         menu = amenu(self, self)
-        for F in (newEntry, viewEntries, helpPage, reportPage):
+        for F in (newEntry, viewEntries):
             frame_name = F.__name__
             frame = F(container, self)
             self.frames[frame_name] = frame
@@ -49,6 +51,14 @@ class app(tk.Tk):
             self.num_tasks -= 1
         else:
             pass
+
+    def get_help(self):
+        if platform.system() == 'Windows':
+            webbrowser.open("https://github.com/M3n3laus/Daily-Task-Tracker")
+        elif platform.system() == 'Darwin':
+            path = 'open -a /Applications/Safari.app %s'
+            webbrowser.get(path).open("https://github.com/M3n3laus/Daily-Task-Tracker")
+        self.show_frame("viewEntries")
 
     def getmeouttahere(self):
         self.f = open('config/tasks.txt', 'wb')
@@ -93,7 +103,7 @@ class amenu(tk.Menu):
         tk.Menu.__init__(self, parent)
         cascade_menu = tk.Menu(self, tearoff = 0)
         another_cascade_menu = tk.Menu(self, tearoff = 0)
-        another_cascade_menu.add_command(label="Get Help", command = lambda: controller.show_frame("helpPage"))
+        another_cascade_menu.add_command(label="Get Help", command = parent.get_help)
         cascade_menu.add_command(label="New Task", command = lambda: parent.show_frame("newEntry"))
         cascade_menu.add_command(label="Generate Report", command = parent.generate_report)
         self.add_cascade(label="File", menu = cascade_menu)
@@ -246,24 +256,7 @@ class newEntry(tk.Frame):
         except:
             messagebox.showwarning("error", "Field(s) not correct")
                 
-class helpPage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        self.help_label = tk.Label(self, text = "press Alt + f4")
-        self.ok_b = tk.Button(self, text = "NOPE", command = self.okay_button)
-        self.help_label.grid()
-        self.ok_b.grid()
 
-    def okay_button(self, *args):
-        self.controller.show_frame("viewEntries")
-
-class reportPage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        
-        
     
 if __name__ == "__main__":
     thisapp = app()
