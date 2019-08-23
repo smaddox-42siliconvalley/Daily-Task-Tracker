@@ -5,6 +5,13 @@ This app helps you keep track of things you need to accomplish
 
 ![alt text](https://github.com/M3n3laus/Daily-Task-Tracker/blob/master/img/app1.png)
 
+
+**Installation Instructions**
+
+Windows: 
+Download python 3 [here](https://www.python.org/downloads)
+
+
 **Add a new task:**
 
 Click *New Task* under the file menu
