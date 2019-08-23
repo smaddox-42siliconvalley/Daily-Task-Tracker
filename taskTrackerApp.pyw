@@ -96,8 +96,6 @@ class amenu(tk.Menu):
         another_cascade_menu.add_command(label="Get Help", command = lambda: controller.show_frame("helpPage"))
         cascade_menu.add_command(label="New Task", command = lambda: parent.show_frame("newEntry"))
         cascade_menu.add_command(label="Generate Report", command = parent.generate_report)
-        #cascade_menu.add_command(label="Save", command = lambda: pickle.dump(controller.tasks, controller.f))
-        #cascade_menu.add_command(label="Save and Exit", command = lambda: controller.getmeouttahere())
         self.add_cascade(label="File", menu = cascade_menu)
         self.add_cascade(label="Help", menu = another_cascade_menu)
         controller.config(menu = self)
@@ -134,27 +132,33 @@ class viewEntries(tk.Frame):
         self.priority = tk.StringVar()
         self.status = tk.StringVar()
         self.notes = tk.StringVar()
+
+        self.label_frame = tk.Frame(self)
+        button_frame = tk.Frame(self)
         
-        title_label = tk.Label(self, textvariable = self.title)
-        priority_label = tk.Label(self, textvariable = self.priority)
-        self.status_label = tk.Label(self, textvariable = self.status)
-        notes_label = tk.Label(self, textvariable = self.notes)
-        next_b = tk.Button(self, text = "  next  ", command = self.next_button)
-        prev_b = tk.Button(self, text = "previous", command = self.prev_button)
-        complete_b = tk.Button(self, text = "toggle complete", command = self.complete_button)
-        remove_b = tk.Button(self, text = "remove task", fg = "red", command = self.remove_button)
+        title_label = tk.Label(self.label_frame, textvariable = self.title)
+        priority_label = tk.Label(self.label_frame, textvariable = self.priority)
+        self.label_frame.status_label = tk.Label(self.label_frame, textvariable = self.status)
+        notes_label = tk.Label(self.label_frame, textvariable = self.notes)
+
+        next_b = tk.Button(button_frame, text = "  next  ", command = self.next_button)
+        prev_b = tk.Button(button_frame, text = "previous", command = self.prev_button)
+        complete_b = tk.Button(button_frame, text = "toggle complete", command = self.complete_button)
+        remove_b = tk.Button(button_frame, text = "remove task", fg = "red", command = self.remove_button)
 
         self.update_view()
 
         title_label.grid(row=0, column=1)
         priority_label.grid(row=1, column=1)
         notes_label.grid(row=2, column=1)
-        self.status_label.grid(row=3, column=1)
+        self.label_frame.status_label.grid(row=3, column=1)
         next_b.grid(row=4, column=2, sticky='nesw', padx=10, pady=20)
         prev_b.grid(row=4, column=0, padx=10, pady=20)
         complete_b.grid(row=4, column=1, padx=10, pady=20)
         remove_b.grid(row =6, column=1, pady=10)
-        
+
+        self.label_frame.grid()
+        button_frame.grid()
 
     def remove_button(self, *args):
         self.controller.remove_task()
@@ -184,14 +188,14 @@ class viewEntries(tk.Frame):
             self.priority.set("Priority: " + self.controller.tasks[self.controller.index].priority)
             self.status.set("Status: " + self.controller.tasks[self.controller.index].status)
             if self.controller.tasks[self.controller.index].status == 'complete':
-                self.status_label.config(fg="green")
+                self.label_frame.status_label.config(fg="green")
             else:
-                self.status_label.config(fg="red")
+                self.label_frame.status_label.config(fg="red")
             self.notes.set("Notes: " + self.controller.tasks[self.controller.index].notes)
         else:
             self.title.set("Title: none")
             self.priority.set("Priority: none")
-            self.status_label.config(fg="black")
+            self.label_frame.status_label.config(fg="black")
             self.status.set("Status: none")
             self.notes.set("Notes: none")
         
@@ -227,8 +231,8 @@ class newEntry(tk.Frame):
         try:
             if (len(self.title) == 0 or len(self.priority) == 0):
                 raise Exception("empty_field")
-            if (len(self.notes) > 500):
-                raise Exception("longnote")
+            if (len(self.notes) > 50 or len(self.title) > 50):
+                raise Exception("longfield")
             self.priority = int(self.priority_entry.get())
             if self.priority < 1 or self.priority > 3:
                 raise Exception("bad value")
