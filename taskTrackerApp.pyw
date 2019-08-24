@@ -232,10 +232,10 @@ class newEntry(tk.Frame):
 
         title_label = tk.Label(self, text = "Title:")
         priority_label = tk.Label(self, text = "Priority:")
+        self.priority_spinbox = tk.Spinbox(self, values=(1, 2, 3))
         notes_label = tk.Label(self, text = "Notes:")
 
         self.title_entry = tk.Entry(self)
-        self.priority_entry = tk.Entry(self)
         self.notes_entry = tk.Entry(self)
 
         done_b = tk.Button(self, text = "Done", command = self.done_button)
@@ -244,27 +244,26 @@ class newEntry(tk.Frame):
         title_label.grid()
         self.title_entry.grid()
         priority_label.grid()
-        self.priority_entry.grid()
+        self.priority_spinbox.grid()
         notes_label.grid()
         self.notes_entry.grid()
         done_b.grid()
 
     def done_button(self, *args):
         self.title = self.title_entry.get()
-        self.priority = self.priority_entry.get()
+        self.priority = int(self.priority_spinbox.get())
         self.notes= self.notes_entry.get()
         try:
-            if (len(self.title) == 0 or len(self.priority) == 0):
+            if (self.priority < 1 or self.priority > 3):
+                raise Exception("bad priority")
+            if (len(self.title) == 0):
                 raise Exception("empty_field")
             if (len(self.notes) > 50 or len(self.title) > 50):
                 raise Exception("longfield")
-            self.priority = int(self.priority_entry.get())
-            if self.priority < 1 or self.priority > 3:
-                raise Exception("bad value")
-            task = newtask(self.title_entry.get(), self.priority_entry.get(), self.notes_entry.get())
+            
+            task = newtask(self.title_entry.get(), self.priority_spinbox.get(), self.notes_entry.get())
             self.controller.add_task(task)
             self.title_entry.delete(0, 'end')
-            self.priority_entry.delete(0, 'end')
             self.notes_entry.delete(0, 'end')
             self.controller.show_frame("viewEntries")
             self.controller.frames["viewEntries"].update_view()
