@@ -1,34 +1,35 @@
-#####################################################################
-#                                                                   #
-#                                                                   #
-#                                                                   #
-#                   created by: smaddox                             #
-#                                                                   #
-#                   Purpose:                                        #
-#                   This is file contains all of the code           #
-#                   in this project. It creates and maintains       #
-#                   a gui interface for tracking your everday       #
-#                   tasks                                           #
-#                                                                   #  
-#####################################################################
-
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    taskTrackerApp.pyw                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/08/25 18:31:32 by smaddox           #+#    #+#              #
+#    Updated: 2019/08/25 23:07:51 by smaddox          ###   ########.fr        #
+#                                                                              #
+#   This file contains the operations neccassary for the gui interface         #
+#                                                                              #
+# **************************************************************************** #
 
 import datetime
 import webbrowser
 import platform
 import os
-import shutil
-import sys
+#import shutil
+#import sys
 import pickle
 import tkinter as tk
 from tkinter import messagebox
 import csv
+import ftp_client
     
 class app(tk.Tk):
     def __init__(self):
         self.data = { }
         self.now = datetime.datetime.now()
         self.date = str(self.now.year) + '-' + str(self.now.month) + '-' + str(self.now.day)
+        self.check_folder()
         self.f = open('config/tasks.txt', 'rb')
         self.setup = open('config/setup.txt', 'r')
         try:
@@ -53,7 +54,21 @@ class app(tk.Tk):
         if (self.read_config()):
             self.show_frame("initPage")
         else:
+            self.ftp_init()
             self.show_frame("viewEntries")
+   
+    def ftp_init(self):
+        self.ftp_client = ftp_client.ftp_client(self.data['username'], self.date, self.data['password'])
+
+
+    def check_folder(self):
+        found = 0
+        report_dirs = next(os.walk('./reports'))[1]
+        for dirs in report_dirs:
+            if dirs == self.date:
+                found = 1
+        if found == 0:
+            os.mkdir('./reports/' + self.date)
 
     def read_config(self):
         csv_values = csv.reader(self.setup)
@@ -115,7 +130,7 @@ class app(tk.Tk):
         if len(self.tasks) == 0:
             messagebox.showinfo("Report Generator", "Nothing to report")
             return
-        reportfile = open('reports/' + self.date + self.data['username'] + '.txt', 'w+')
+        reportfile = open('reports/' + self.date + '/' + self.data['username'] + '.txt', 'w+')
         ontrack = 1
         perfect = 1
 
@@ -141,8 +156,11 @@ class app(tk.Tk):
         else:
             reportfile.write('Main tasks accomplished: False\n')
         reportfile.close()   
+        self.ftp_client.post()
         messagebox.showinfo("Report Generator", "Report Successfully generated")
         
+        #def download_reports(self):
+
 class amenu(tk.Menu):
     def __init__(self, parent, controller):
         tk.Menu.__init__(self, parent)
@@ -151,6 +169,7 @@ class amenu(tk.Menu):
         another_cascade_menu.add_command(label="Get Help", command = parent.get_help)
         cascade_menu.add_command(label="New Task", command = lambda: parent.show_frame("newEntry"))
         cascade_menu.add_command(label="Generate Report", command = parent.generate_report)
+        cascade_menu.add_command(label="Download Reports", command = lambda: parent.ftp_client.get())
         self.add_cascade(label="File", menu = cascade_menu)
         self.add_cascade(label="Help", menu = another_cascade_menu)
         controller.config(menu = self)
@@ -183,9 +202,9 @@ class initPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.user_label = tk.Label(self, text = "Enter your ftp username:")
-        self.pass_label = tk.Label(self, text = "Enter your ftp password:")
-        self.user_entry = tk.Entry(self)
+        self.pass_label = tk.Label(self, text = "Enter the password for the ftp server:")
         self.pass_entry = tk.Entry(self)
+        self.user_entry = tk.Entry(self)
         self.done_b = tk.Button(self, text = "Done", command=self.get_vals)
 
         self.user_label.grid()
@@ -198,6 +217,7 @@ class initPage(tk.Frame):
         self.controller.data['username'] = self.user_entry.get()
         self.controller.data['password'] = self.pass_entry.get()
         self.controller.write_config()
+        self.controller.ftp_init()
         self.controller.show_frame("viewEntries")
             
         
