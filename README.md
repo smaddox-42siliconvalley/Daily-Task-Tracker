@@ -71,7 +71,6 @@ A task's title cannot contain more than 50 characters
 
 Notes are optional
 
-The priority value must be 1, 2, or 3
 
 **Reporting**
 
@@ -82,19 +81,9 @@ Reports will appear in the reports folder inside your repository
 ![alt text](img/reportmenu.png)
 
 
-**Priority Rating System**
-
-Priority Level 1: Tasks that must be finished by the end of the day
-
-Priority Level 2: Tasks that must be completed as long as they do not interfere with level 1 tasks
-
-Priority Leve 3: Don't feel bad about not completing these tasks
-
 For reports:
 
-On track is the completion of all level 1 tasks
-
-Main tasks accomplished is the completion of all level 1 and 2 tasks
+On track is the completion of all tasks
 
 **License**
 

@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 21:17:00 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/26 17:53:56 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/27 12:49:25 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the classes for each window in the gui                  #
 #                                                                              #
@@ -44,14 +44,12 @@ class viewEntries(tk.Frame):
         self.controller = controller
 
         self.title = tk.StringVar()
-        self.priority = tk.StringVar()
         self.status = tk.StringVar()
 
         self.label_frame = tk.Frame(self)
         button_frame = tk.Frame(self)
         
         title_label = tk.Label(self.label_frame, textvariable = self.title)
-        priority_label = tk.Label(self.label_frame, textvariable = self.priority)
         self.label_frame.status_label = tk.Label(self.label_frame, textvariable = self.status)
         notes_label = tk.Label(self.label_frame, text = "Notes:")
 
@@ -65,7 +63,6 @@ class viewEntries(tk.Frame):
         self.update_view()
 
         title_label.grid(row=0, column=1)
-        priority_label.grid(row=1, column=1)
         notes_label.grid(row=2, column=1)
         self.label_frame.status_label.grid(row=4, column=1)
 
@@ -77,8 +74,8 @@ class viewEntries(tk.Frame):
         complete_b.grid(row=4, column=1, padx=10, pady=20)
         remove_b.grid(row =6, column=1, pady=10)
 
-        self.label_frame.grid()
-        button_frame.grid()
+        self.label_frame.grid(row=1)
+        button_frame.grid(row=2)
 
 
     def remove_button(self, *args):
@@ -100,7 +97,6 @@ class viewEntries(tk.Frame):
         
     def update_view(self, *args):
         self.title.set("Title: " + self.controller.taskmanager.get_title())
-        self.priority.set("Priority: " + str(self.controller.taskmanager.get_priority()))
         self.status.set("Status: " + self.controller.taskmanager.get_status())
         self.notes_textbox.config(state='normal')
         self.notes_textbox.delete(1.0, tk.END)
@@ -118,10 +114,7 @@ class newEntry(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-
         title_label = tk.Label(self, text = "Title:")
-        priority_label = tk.Label(self, text = "Priority:")
-        self.priority_spinbox = tk.Spinbox(self, values=(1, 2, 3))
         notes_label = tk.Label(self, text = "Notes:")
 
         self.title_entry = tk.Entry(self)
@@ -131,29 +124,24 @@ class newEntry(tk.Frame):
         done_b = tk.Button(self, text = "Done", command = self.done_button)
         
         
-        title_label.grid()
-        self.title_entry.grid()
-        priority_label.grid()
-        self.priority_spinbox.grid()
-        notes_label.grid()
-        self.notes_entry.grid()
-        done_b.grid()
+        title_label.grid(row=1,column=1)
+        self.title_entry.grid(row=2, column=1)
+        notes_label.grid(row=5, column=1)
+        self.notes_entry.grid(row=6, column=1)
+        done_b.grid(row=7, column=1)
 
 
     def done_button(self, *args):
         self.title = self.title_entry.get()
-        self.priority = int(self.priority_spinbox.get())
         self.notes = self.notes_entry.get(1.0, tk.END)
         try:
-            if (self.priority < 1 or self.priority > 3):
-                raise Exception("bad priority")
             if (len(self.title) == 0):
                 raise Exception("empty_field")
             if (len(self.title) > 50):
                 raise Exception("longfield")
             
-            self.controller.taskmanager.add_task(self.title, self.priority, self.notes)
-            self.title_entry.delete(0, 'end')
+            self.controller.taskmanager.add_task(self.title, 1, self.notes)
+            self.title_entry.delete(0, tk.END)
             self.notes_entry.delete(1.0, tk.END)
             self.controller.show_frame("viewEntries")
             self.controller.frames["viewEntries"].update_view()

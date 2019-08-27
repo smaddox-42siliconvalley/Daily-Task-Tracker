@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 18:36:25 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/26 18:32:34 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/27 12:57:49 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the class that handle I/O and ftp                       #
 #                                                                              #
@@ -59,7 +59,8 @@ class configs:
                 found = 1
         if found == 0:
             os.mkdir('./reports')
-
+        
+        found = 0
         report_dirs = next(os.walk(self.reportpath))[1]
         for dirs in report_dirs:
             if dirs == self.date:
@@ -155,20 +156,16 @@ class configs:
 
         for task in tasks:
             temp = 'Title: ' + task.title + \
-                    '\nPriority level: ' + str(task.priority) + \
                     '\nStatus: ' + task.status + \
                     '\nNotes: \n' + task.notes + \
                     '\n\n'
             
-            if task.priority == 1 and task.status == 'incomplete':
+            if task.status == 'incomplete':
                 ontrack = 0
-            if task.priority != 3 and task.status == 'incomplete':
-                perfect = 0
 
             reportfile.write(temp)
 
         reportfile.write('On track: ' + str(ontrack) + '\n')
-        reportfile.write('Main task accomplished: ' + str(perfect) + '\n')
         reportfile.close()
         
 

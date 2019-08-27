@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 20:30:41 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/26 17:37:09 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/26 21:35:00 by smaddox          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,17 +60,12 @@ class app(tk.Tk):
     def throw_info_plz(self, title, content):
         messagebox.showinfo(title, content)
 
-    def get_help(self):
-        print("no")
-
-
 class new_menu(tk.Menu):
     def __init__(self, parent, controller):
         tk.Menu.__init__(self, parent)
         
         menu_one = tk.Menu(self, tearoff = 0)
         menu_two = tk.Menu(self, tearoff = 0)
-        menu_three = tk.Menu(self, tearoff = 0)
 
         menu_one.add_command(label = "New Task", command = lambda: parent.show_frame("newEntry"))
         menu_one.add_command(label = "Exit", command = parent.quit_app)
@@ -82,7 +77,6 @@ class new_menu(tk.Menu):
 
         self.add_cascade(label = "File", menu = menu_one)
         self.add_cascade(label = "Reporting", menu = menu_two)
-        self.add_cascade(label = "Help", menu = menu_three)
         controller.config(menu = self)
 
 def main():
