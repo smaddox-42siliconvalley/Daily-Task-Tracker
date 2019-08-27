@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 20:30:41 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/26 14:05:53 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/26 17:37:09 by smaddox          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ class new_menu(tk.Menu):
         menu_two.add_command(label = "Download Reports", command = parent.configs.ftp_get)
         menu_two.add_command(label = "Upload Reports", command = parent.configs.ftp_post)
 
-        menu_three.add_command(label = "Get Help", command = parent.get_help)
+        #menu_three.add_command(label = "Get Help", command = parent.get_help)
 
         self.add_cascade(label = "File", menu = menu_one)
         self.add_cascade(label = "Reporting", menu = menu_two)

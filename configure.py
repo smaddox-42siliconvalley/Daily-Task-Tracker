@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 18:36:25 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/26 15:40:08 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/26 18:03:03 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the class that handle I/O and ftp                       #
 #                                                                              #
@@ -52,6 +52,14 @@ class configs:
 
     def check_folder(self):
         found = 0
+        
+        report_dirs = next(os.walk('.'))[1]
+        for dirs in report_dirs:
+            if dirs == 'reports':
+                found = 1
+        if found == 0:
+            os.mkdir('./reports')
+
         report_dirs = next(os.walk(self.reportpath))[1]
         for dirs in report_dirs:
             if dirs == self.date:

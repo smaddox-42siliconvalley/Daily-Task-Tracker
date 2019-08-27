@@ -3,7 +3,7 @@ Productivity tool written in python
 
 This app helps you keep track of things you need to accomplish
 
-![alt text](https://github.com/M3n3laus/Daily-Task-Tracker/blob/master/img/app1.png)
+![alt text](img/viewEntriesPage.png)
 
 
 **Installation Instructions**
@@ -60,11 +60,11 @@ python3 taskTrackerApp.pyw
 
 Click *New Task* under the file menu
 
-![alt text](https://github.com/M3n3laus/Daily-Task-Tracker/blob/master/img/file%20menu.png)
+![alt text](img/filemenu.png)
 
 This will bring up the task entry page
 
-![alt text](https://github.com/M3n3laus/Daily-Task-Tracker/blob/master/img/task%20entry%20page.png)
+![alt text](img/taskEntryPage.png)
 
 
 A task's title and note cannot contain more than 50 characters
@@ -73,13 +73,13 @@ Notes are optional
 
 The priority value must be 1, 2, or 3
 
-**Generate a report**
+**Reporting**
 
-Click *Generate Report* under the file menu
+Upload and Download reports
 
 Reports will appear in the reports folder inside your repository 
 
-![alt text](https://github.com/M3n3laus/Daily-Task-Tracker/blob/master/img/Report%20Sample.png)
+![alt text](img/reportmenu.png)
 
 
 **Priority Rating System**

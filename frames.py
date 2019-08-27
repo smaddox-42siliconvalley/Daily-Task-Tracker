@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 21:17:00 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/26 15:22:33 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/26 17:53:56 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the classes for each window in the gui                  #
 #                                                                              #
