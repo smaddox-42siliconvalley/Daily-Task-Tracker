@@ -67,7 +67,7 @@ This will bring up the task entry page
 ![alt text](img/taskEntryPage.png)
 
 
-A task's title and note cannot contain more than 50 characters
+A task's title cannot contain more than 50 characters
 
 Notes are optional
 
@@ -95,10 +95,6 @@ For reports:
 On track is the completion of all level 1 tasks
 
 Main tasks accomplished is the completion of all level 1 and 2 tasks
-
-**Help Menu**
-
-The *Get Help* button will open this page in your browser
 
 **License**
 
