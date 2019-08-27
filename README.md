@@ -51,7 +51,7 @@ Run the program with the following
 
 ```
 cd Daily-Task-Tracker
-python3 taskTrackerApp.pyw
+python3 app.pyw
 ```
 
 **Using the program:**
