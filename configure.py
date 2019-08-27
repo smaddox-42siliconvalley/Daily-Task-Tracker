@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 18:36:25 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/26 18:03:03 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/26 18:32:34 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the class that handle I/O and ftp                       #
 #                                                                              #
@@ -105,6 +105,7 @@ class configs:
             self.setup.write("%s,%s\n"%(key[i], values[i]))
 
         self.setup.close()
+        self.ftp_init()
 
 
     def dump_pickle(self, tasks):
