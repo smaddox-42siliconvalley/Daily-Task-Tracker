@@ -6,10 +6,10 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 21:28:25 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/27 12:50:25 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/27 16:40:08 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the classes that handles task operations                #
-#   and keep track of them                                                     #
+#   and keeps track of them                                                    #
 #                                                                              #
 # **************************************************************************** #
 
