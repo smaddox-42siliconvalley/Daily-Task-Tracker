@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 21:17:00 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/27 16:21:41 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/27 16:29:54 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the classes for each window in the gui                  #
 #                                                                              #
@@ -39,7 +39,7 @@ class initPage(tk.Frame):
             self.controller.configs.ftp_init()
             self.controller.show_frame("viewEntries")
         except:
-            pass
+            self.parent.throw_info_plz("ftp_client", "Cannot connect")
             
         
 class viewEntries(tk.Frame):
