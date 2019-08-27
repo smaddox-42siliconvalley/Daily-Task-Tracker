@@ -6,7 +6,9 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 20:30:41 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/26 21:35:00 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/27 15:11:42 by smaddox          ###   ########.fr        #
+#                                                                              #
+#   This file contains the main class for the application                      #
 #                                                                              #
 # **************************************************************************** #
 

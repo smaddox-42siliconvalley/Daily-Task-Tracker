@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 18:36:25 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/27 12:57:49 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/27 15:55:26 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the class that handle I/O and ftp                       #
 #                                                                              #
@@ -115,9 +115,12 @@ class configs:
         self.picklefile.close()
 
     def ftp_init(self):
-        self.session = ftplib.FTP(self.server_ip)
-        self.session.login(self.data['username'], self.data['password'])
-        self.session.cwd(self.server_path)
+        try:
+            self.session = ftplib.FTP(self.server_ip)
+            self.session.login(self.data['username'], self.data['password'])
+            self.session.cwd(self.server_path)
+        except:
+            self.parent.throw_info_plz("ftp_client", "Could not connect")
 
     def ftp_post(self):
         try:
