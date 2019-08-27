@@ -16,7 +16,7 @@ Download ZIP file
 
 Extract contents into a new folder
 
-double click taskTrackerApp.pyw
+double click app.pyw
 
 MacOs:
 
