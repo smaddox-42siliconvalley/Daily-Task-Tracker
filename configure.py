@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 18:36:25 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/27 16:14:02 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/27 16:21:39 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the class that handle I/O and ftp                       #
 #                                                                              #
@@ -106,7 +106,6 @@ class configs:
             self.setup.write("%s,%s\n"%(key[i], values[i]))
 
         self.setup.close()
-        self.ftp_init()
 
 
     def dump_pickle(self, tasks):
@@ -115,23 +114,9 @@ class configs:
         self.picklefile.close()
 
     def ftp_init(self):
-        try:
-            self.session = ftplib.FTP(self.server_ip)
-        except:
-            self.parent.throw_info_plz("ftp_client", "Could not connect")
-            return
-
-        try:
-            self.session.login(self.data['username'], self.data['password'])
-        except:
-            self.parent.throw_info_plz("ftp_client", "Bad login")
-            return
-
-        try:
-            self.session.cwd(self.server_path)
-        except:
-            self.parent.throw_info_plz("ftp_client", "Report dir does not exist\nContact Administrator")
-            return
+        self.session = ftplib.FTP(self.server_ip)
+        self.session.login(self.data['username'], self.data['password'])
+        self.session.cwd(self.server_path)
 
     def ftp_post(self):
         try:

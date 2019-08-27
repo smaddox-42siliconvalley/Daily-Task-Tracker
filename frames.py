@@ -6,7 +6,7 @@
 #    By: smaddox <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/25 21:17:00 by smaddox           #+#    #+#              #
-#    Updated: 2019/08/27 12:49:25 by smaddox          ###   ########.fr        #
+#    Updated: 2019/08/27 16:21:41 by smaddox          ###   ########.fr        #
 #                                                                              #
 #   This file contains the classes for each window in the gui                  #
 #                                                                              #
@@ -35,7 +35,11 @@ class initPage(tk.Frame):
         self.controller.configs.set_username(self.user_entry.get())
         self.controller.configs.set_password(self.pass_entry.get())
         self.controller.configs.write_config()
-        self.controller.show_frame("viewEntries")
+        try:
+            self.controller.configs.ftp_init()
+            self.controller.show_frame("viewEntries")
+        except:
+            pass
             
         
 class viewEntries(tk.Frame):
